@@ -25,8 +25,10 @@ SECRET_KEY = '(@+aqo=eif&ya*ax%@z-9!_6ubujkj3zb4)tvr44kjl077iv6o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+if DEBUG:
+    ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -73,7 +75,8 @@ WSGI_APPLICATION = 'buddakrut.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-if DEBUG: 
+
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -97,8 +100,6 @@ else:
             'default-character-set': 'utf-8',
         }
     }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
