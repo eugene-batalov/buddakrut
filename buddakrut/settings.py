@@ -73,18 +73,30 @@ WSGI_APPLICATION = 'buddakrut.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'evgeniy-batalov',
-        'USER':'evgeniy-batalov',
-        'PASSWORD': 'zSmZtPWySRur2mJx',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'default-character-set': 'utf-8',
+if DEBUG: 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'evgeniy-batalov',
+            'USER':'evgeniy-batalov',
+            'PASSWORD': 'zSmZtPWySRur2mJx',
+            'HOST': 'mysql.evgeniy-batalov.myjino.ru',
+            'PORT': '3306',
+            'default-character-set': 'utf-8',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'evgeniy-batalov',
+            'USER':'evgeniy-batalov',
+            'PASSWORD': 'zSmZtPWySRur2mJx',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'default-character-set': 'utf-8',
+        }
+    }
 
 
 # Password validation
