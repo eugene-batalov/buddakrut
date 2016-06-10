@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import authenticate
+from django.contrib import auth
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, redirect
 from django.core.urlresolvers import reverse
+from django.core.context_processors import csrf
 from django.views import generic
 from .models import Users
 from django.template import RequestContext, loader
@@ -18,8 +19,7 @@ class IndexView(generic.ListView):
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
-    login_url = '/loginpage/'
-    redirect_field_name = 'next'
+    login_url = '/login/'
     model = Users
     template_name = 'ongames/details.html'
     context_object_name = 'user'
@@ -41,19 +41,24 @@ def save(request, idusers):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('ongames:detail', args=(user.idusers,)))
 
-def login_page(request):
-    template = loader.get_template('ongames/login.html')
-    context = RequestContext(request, )
-    return HttpResponse(template.render(context))
-        
 def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    redirect_to = request.POST['next']
-    user = authenticate(username=username, password=password)
+    c = {}
+    c.update(csrf(request))
+    request.session['next'] = request.GET.get('next', '/')
+    return render_to_response('ongames/login.html', c)
+#    template = loader.get_template('ongames/login.html')
+#    context = RequestContext(request, )
+#    return HttpResponse(template.render(context))
+        
+def auth_view(request):
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    redirect_to = request.session['next']
+    user = auth.authenticate(username=username, password=password)
     if user is not None:
-         return HttpResponseRedirect(redirect_to)
+        auth.login(request, user)
+        return HttpResponseRedirect(redirect_to)
     else:
-        return HttpResponseRedirect('/login/')
+        return redirect('/login/')
     
     

@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^(?P<idusers>[0-9]+)/save/$', views.save, name='save'),
-    url(r'^loginpage/$', views.login_page, name='loginpage'),
     url(r'^login/$', views.login, name='login'),
+    url(r'^auth/$', views.auth_view, name='auth_view'),
 ]
