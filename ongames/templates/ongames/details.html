@@ -1,0 +1,10 @@
+<h1>Hello, {{ user.name }}!</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="{% url 'ongames:save' user.idusers %}" method="post">
+{% csrf_token %}
+<div class="control-group required"><label>NAME </label><input id="name" type="text" placeholder="name" name="name" value="{{ user.name }}" required class="inputbox"></div>
+<div class="control-group required"><label>EMAIL </label><input id="email" type="text" placeholder="email" name="email" value="{{ user.email }}" required class="inputbox"></div>
+<div class="control-group required"><label>KARMA </label><input id="karma" type="text" placeholder="karma" name="karma" value="{{ user.karma }}" required class="inputbox"></div>
+<div class="control-group required"><label>PAID TILL </label><input id="paidtill" type="text" placeholder="paidtill" name="paidtill" value="{{ user.paidtill }}" required class="inputbox"></div>
+<input type="submit" value="Save" />
+</form>

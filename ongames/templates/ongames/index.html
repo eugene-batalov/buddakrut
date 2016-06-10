@@ -1,35 +1,9 @@
-{% extends "ongames/base.html" %}
-{% load staticfiles %}
-{% block title %}Home{% endblock %}
-{% block mainpage %}
-<div class="mobile-logo-text">
-<div class="first-line">Offline puzzle games club</div>
-<div class="second-line"><span class="text-accent">Game</span><span>puzzle</span></div>
-</div>
-{% endblock %}
-{% block showcase %}
-<section class="showcase valigner">
-	<div class="showcase-text valigner-content"><img src="{% static 'ongames/img/logo-standalone.png' %}" alt="">
-        	<div class="first-line">Offline puzzle games club</div>
-        	<div class="second-line"><span class="accent">Game</span>puzzle</div>
-        	<div class="game-menu"><a href="" class="part part-1"><img src="{% static 'ongames/img/part-1.png' %}" alt="">
-            <span class="part-text part-text-1"><span>FREE PUZZLES</span></span></a>
-            <a href="" class="part part-2"><img src="{% static 'ongames/img/part-2.png' %}" alt="">
-            <span class="part-text part-text-2"><span>MEMBER AREA</span></span></a>
-            <a href="" class="part part-3"><img src="{% static 'ongames/img/part-3.png' %}" alt="">
-            <span class="part-text part-text-3"><span>TOURNAMENTS</span></span></a>
-        </div>
-        <div class="store-links"><a href="" class="store-link"><img src="{% static 'ongames/img/apple.png' %}">
-            <span class="store-text"><small>Available on the</small><span class="store-name">App Store</span>
-            </span></a><a href="" class="store-link"><img src="{% static 'ongames/img/wp.png' %}"><span class="store-text">
-            <small>Download from</small><span class="store-name">Windows Store</span></span></a>
-            <a href="" class="store-link"><img src="{% static 'ongames/img/android.png' %}"><span class="store-text">
-            <small>Get in on</small><span class="store-name">Google Play</span></span></a>
-        </div>
-        <a href="" class="btn-main">Program build puzzles</a>
-        <div class="index-copyright">&copy; Gamepuzzle 2015</div>
-    </div>
-<!-- /showcase-text-->
-</section>
-<!-- /showcase-->
-{% endblock %}
+{% if latest_users_list %}
+    <ul>
+    {% for user in latest_users_list %}
+        <li><a href="{% url 'ongames:detail' user.idusers %}">{{ user.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No users are available.</p>
+{% endif %}

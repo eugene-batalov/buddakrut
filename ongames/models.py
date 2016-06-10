@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 class Story(models.Model):
     idstory = models.AutoField(primary_key=True)
@@ -16,8 +16,10 @@ class Story(models.Model):
     started = models.DateTimeField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'story'
+        verbose_name = 'story'
+        verbose_name_plural = 'stories'
 
 
 class Storyparts(models.Model):
@@ -30,9 +32,10 @@ class Storyparts(models.Model):
     created = models.DateTimeField()
 
     class Meta:
-        managed = False
-        db_table = 'storyparts'
-
+        managed = True
+        db_table = 'storyparts'        
+        verbose_name = 'storypart'
+        verbose_name_plural = 'storyparts'
 
 class Users(models.Model):
     idusers = models.AutoField(primary_key=True)
@@ -41,6 +44,13 @@ class Users(models.Model):
     karma = models.IntegerField()
     paidtill = models.DateTimeField()
 
+    def __str__(self):
+        return 'id: ' + str(self.idusers) + ' name: ' + self.name
+    def isPaid(self):
+        return self.paidtill is not None and self.paidtill >= timezone.now()    
+    
     class Meta:
-        managed = False
-        db_table = 'users'
+        managed = True
+        db_table = 'users'        
+        verbose_name = 'user'
+        verbose_name_plural = 'users'

@@ -78,6 +78,17 @@ WSGI_APPLICATION = 'buddakrut.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 if DEBUG:
+#    DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.mysql',
+#            'NAME': 'evgenyi-batalov',
+#            'USER':'testuser2',
+#            'PASSWORD': 'zSmZtPWySRur2mJx',
+#            'HOST': '192.168.10.71',
+#            'PORT': '3306',
+#            'default-character-set': 'utf-8',
+#        }
+#    }
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
