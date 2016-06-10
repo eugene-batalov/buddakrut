@@ -1,0 +1,103 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>{% block title %}{% endblock %}</title>
+	<meta name="description">
+	<meta name="keywords">
+	<meta name="copyright">
+	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin,cyrillic" rel="stylesheet">
+	<link href="{% static "ongames/css/main.css" %}" rel="stylesheet">
+</head>
+  <body>
+	<div class="page-surround">
+		<header class="header">
+			<nav class="main-nav">
+                <a href="/" class="logo index-logo">
+                     <img src="{% static "ongames/img/logo.png" %}" height="39" width="39" alt=""><span>Offline puzzle games club</span>
+                    {% block mainpage %}{% endblock %}
+                </a>
+					<div class="menu-holder">
+						<ul class="menu">
+							<li>
+								<!-- add "active" class to <a> if necessary--><a href="index.html" class="menu-item">Game Rules</a>
+							</li>
+							<li>
+								<!-- add "active" class to <a> if necessary--><a href="index.html" class="menu-item">Personal Info</a>
+							</li>
+							<li>
+								<div class="language"><a href="" class="language-toggle">EN</a>
+									<div class="language-dropdown"><a href="" class="active">English</a><a href="">Russian</a></div>
+								</div>
+							</li>
+						</ul>
+						<!-- /ul.menu-->
+					</div>
+					<!-- /menu-holder-->
+					<!-- mobile-nav-triggers--><a href="" class="mobile-toggles mobile-menu-toggle menu-toggle"></a><a href="" class="mobile-toggles menu-info"></a>
+					<div class="language-mobile"><a href="" class="language-toggle">RU</a>
+						<div class="language-dropdown"><a href="" class="active">Русский</a><a href="">Английский</a><a href="">Японский</a><a href="">Немецкий</a></div>
+					</div>
+					<!-- /mobile-nav-triggers-->
+				</nav>
+				<!-- /nav.main-nav-->
+        	</header>
+        {% block showcase %}{% endblock %}
+			<footer class="footer">
+				<div class="footer-content"><span class="copyright">&copy; Gamepuzzle 2015</span>
+					<ul class="menu">
+						<li>
+							<!-- add "active" class to <a> if necessary--><a href="index.html" class="menu-item">News</a>
+						</li>
+						<li>
+							<!-- add "active" class to <a> if necessary--><a href="index.html" class="menu-item">Terms and conditions</a>
+						</li>
+						<li>
+							<!-- add "active" class to <a> if necessary--><a href="index.html" class="menu-item">Our privacy policy</a>
+						</li>
+						<li>
+							<!-- add "active" class to <a> if necessary--><a href="index.html" class="menu-item">Contacts us</a>
+						</li>
+					</ul>
+					<!-- /ul.menu-->
+				</div>
+				<!-- /footer menu-->
+			</footer>
+			<!-- /footer-->
+		</div>
+		<!-- /page-surround-->
+		<!-- mobile-nav-->
+		<div data-mcs-theme="minimal" class="mobile-nav mCustomScrollbar"><a href="" class="menu-toggle"></a>
+			<ul class="mobile-menu">
+				<li>
+					<!-- add "active" class to <a> if necessary--><a href="index.html">Game Rules</a>
+				</li>
+				<li>
+					<!-- add "active" class to <a> if necessary--><a href="index.html">Personal Account</a>
+				</li>
+				<li>
+					<!-- add "active" class to <a> if necessary--><a href="index.html">News </a>
+				</li>
+				<li>
+					<!-- add "active" class to <a> if necessary--><a href="index.html">Terms and conditions</a>
+				</li>
+				<li>
+					<!-- add "active" class to <a> if necessary--><a href="index.html">Our privacy policy</a>
+				</li>
+				<li>
+					<!-- add "active" class to <a> if necessary--><a href="index.html">Contacts us</a>
+				</li>
+			</ul>
+			<!-- /ul.menu-->
+		</div>
+		<!-- /mobile-nav-->
+		<script src="{% static 'ongames/js/main.js' %}"></script>
+	</body>
+</html>

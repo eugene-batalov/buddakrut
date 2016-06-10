@@ -33,6 +33,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'ongames.apps.OngamesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,3 +139,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.expanduser('~'), 'domains/buddakrut.ru/static/')
+
+if DEBUG:
+    BASE = os.path.abspath(os.path.dirname(__name__))
+    STATICFILES_DIRS = (os.path.join(BASE, "static"),)
+else:
+    STATICFILES_DIRS = [
+        os.path.join(os.path.expanduser('~'), "domains/buddakrut.ru/static/"),
+    ]

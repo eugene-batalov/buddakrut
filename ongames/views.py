@@ -1,5 +1,4 @@
-from django.http import HttpResponse
+from django.views import generic
 
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the ongames index.")
+class IndexView(generic.base.TemplateView):
+    template_name = 'ongames/index.html'
