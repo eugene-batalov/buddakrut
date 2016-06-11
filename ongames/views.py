@@ -3,7 +3,6 @@ from django.contrib import auth
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response, redirect
 from django.core.urlresolvers import reverse
-from django.core.context_processors import csrf
 from django.views import generic
 from django.template import RequestContext, loader
 from django.core.mail import send_mail
@@ -56,7 +55,6 @@ def login(request):
     else:
         form = LoginForm()
     c = {}
-    c.update(csrf(request))
     c['form'] = form
     request.session['next'] = request.GET.get('next', '/')
     return render(request, 'ongames/login.html', c)

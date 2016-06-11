@@ -33,6 +33,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'thirdauth.apps.ThirdauthConfig',
     'ongames.apps.OngamesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -66,10 +68,22 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1636955969957791'
+SOCIAL_AUTH_FACEBOOK_SECRET = '4d1264237cbf837e79a572bdeaf27f56'
 
 WSGI_APPLICATION = 'buddakrut.wsgi.application'
 

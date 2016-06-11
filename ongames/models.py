@@ -16,8 +16,8 @@ class Story(models.Model):
     started = models.DateTimeField()
 
     class Meta:
-        managed = True
-        db_table = 'story'
+        managed = False
+        db_table = 'storychain'
         verbose_name = 'story'
         verbose_name_plural = 'stories'
 
@@ -32,7 +32,7 @@ class Storyparts(models.Model):
     created = models.DateTimeField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'storyparts'        
         verbose_name = 'storypart'
         verbose_name_plural = 'storyparts'
@@ -50,7 +50,7 @@ class Users(models.Model):
         return self.paidtill is not None and self.paidtill >= timezone.now()    
     
     class Meta:
-        managed = True
+        managed = False
         db_table = 'users'        
         verbose_name = 'user'
         verbose_name_plural = 'users'
