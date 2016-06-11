@@ -1,8 +1,7 @@
 
-<form action="{% url 'ongames:auth_view' %}" method="post">
+<form action="{% url 'ongames:login' %}" method="post">
 {% csrf_token %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<div><label>LOGIN </label><input id="username" type="text" name="username" value=""></div>
-<div><label>PASSWORD </label><input id="password" type="password" name="password"" value=""></div>
+{{ form }}
 <input type="submit" value="LOGIN" />
 </form>

@@ -5,9 +5,11 @@ from django.shortcuts import render, render_to_response, redirect
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
 from django.views import generic
-from .models import Users
 from django.template import RequestContext, loader
+from django.core.mail import send_mail
 
+from .models import Users
+from .forms import LoginForm
 
 class IndexView(generic.ListView):
     template_name = 'ongames/index.html'
@@ -42,23 +44,35 @@ def save(request, idusers):
         return HttpResponseRedirect(reverse('ongames:detail', args=(user.idusers,)))
 
 def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+                user = auth.authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+                if user is not None:
+                    auth.login(request, user)
+                    return HttpResponseRedirect(request.session['next'])
+                else:
+                    return redirect('/login/')
+    else:
+        form = LoginForm()
     c = {}
     c.update(csrf(request))
+    c['form'] = form
     request.session['next'] = request.GET.get('next', '/')
-    return render_to_response('ongames/login.html', c)
-#    template = loader.get_template('ongames/login.html')
-#    context = RequestContext(request, )
-#    return HttpResponse(template.render(context))
-        
-def auth_view(request):
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
-    redirect_to = request.session['next']
-    user = auth.authenticate(username=username, password=password)
-    if user is not None:
-        auth.login(request, user)
-        return HttpResponseRedirect(redirect_to)
-    else:
-        return redirect('/login/')
+    return render(request, 'ongames/login.html', c)
     
+# Send Mail:
+#if form.is_valid():
+#    subject = form.cleaned_data['subject']
+#    message = form.cleaned_data['message']
+#    sender = form.cleaned_data['sender']
+#    cc_myself = form.cleaned_data['cc_myself']
+#
+#    recipients = ['info@example.com']
+#    if cc_myself:
+#        recipients.append(sender)
+#
+#    send_mail(subject, message, sender, recipients)
+#    return HttpResponseRedirect('/thanks/')
+   
     
