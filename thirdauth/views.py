@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from django.contrib.auth import logout
    
 def home(request):
    context = RequestContext(request,

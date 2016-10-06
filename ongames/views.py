@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import auth
 from django.http import HttpResponseRedirect, HttpResponse
